@@ -4,66 +4,76 @@ var flow = require('../index');
 describe('flow', function () {
 
     function sTask(input) {
-        var value = input || 1;
+        var value = input;
         return ++value;
     }
+
     function aTask(callback, input) {
         setTimeout(function () {
-            var value = input || 1;
+            var value = input;
             callback(null, ++value);
         }, 100);
     }
+
     function eTask() {
         throw {code: 'EXC'};
     }
+
     function eaTask(callback) {
         setTimeout(function () {
             callback({code: 'AEXC'});
         }, 100);
     }
+
     describe('#runTask()', function () {
         it('should run sync tasks in series ', function (done) {
-            flow.runSeries(function (ex, input) {
-                (ex == null).should.be.true;
-                input.should.be.equal(3);
-                done();
-            }, [sTask, sTask, sTask])
+            flow.runSeries([sTask, sTask, sTask],
+                function (ex, input) {
+                    (ex == null).should.be.true;
+                    input.should.be.equal(4);
+                    done();
+                }, 1)
         })
     });
     describe('#runTask()', function () {
         it('should run async tasks in series ', function (done) {
-            flow.runSeries(function (ex, input) {
-                (ex == null).should.be.true;
-                input.should.be.equal(3);
-                done();
-            }, [aTask, aTask, aTask])
+            flow.runSeries([aTask, aTask, aTask],
+                function (ex, input) {
+                    (ex == null).should.be.true;
+                    input.should.be.equal(4);
+                    done();
+                }, 1)
         })
     });
     describe('#runTask()', function () {
         it('should run both async and sync tasks in series ', function (done) {
-            flow.runSeries(function (ex, input) {
-                (ex == null).should.be.true;
-                input.should.be.equal(5);
-                done();
-            }, [aTask, sTask, aTask, sTask, aTask])
+            flow.runSeries(
+                [aTask, sTask, aTask, sTask, aTask],
+                function (ex, input) {
+                    (ex == null).should.be.true;
+                    input.should.be.equal(6);
+                    done();
+                }, 1)
         })
     });
     describe('#runTask()', function () {
         it('should block on sync task exception', function (done) {
-            flow.runSeries(function (ex) {
-                ex.should.be.ok;
-                ex.code.should.be.equal('EXC');
-                done();
-            }, [aTask, sTask, eTask, aTask, sTask])
+            flow.runSeries([aTask, sTask, eTask, aTask, sTask],
+                function (ex) {
+                    ex.should.be.ok;
+                    ex.code.should.be.equal('EXC');
+                    done();
+                })
         })
     });
     describe('#runTask()', function () {
         it('should block on async task exception', function (done) {
-            flow.runSeries(function (ex) {
+            flow.runSeries( [aTask, sTask, eaTask, aTask, sTask],
+            function (ex) {
                 ex.should.be.ok;
                 ex.code.should.be.equal('AEXC');
                 done();
-            }, [aTask, sTask, eaTask, aTask, sTask])
+            })
         })
     });
 
@@ -86,6 +96,7 @@ describe('flow', function () {
     describe('#retryUntillIsDone()', function () {
         it('should retry until done ', function (done) {
             var i = 0;
+
             function task(callback, input) {
                 setTimeout(function () {
                     i++;
@@ -96,6 +107,7 @@ describe('flow', function () {
                     }
                 }, 10);
             }
+
             flow.retryUntilIsDone(function (ex, arg1, arg2, input) {
                 (!ex).should.be.true;
                 arg1.should.be.eql(3);
