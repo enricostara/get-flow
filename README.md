@@ -5,7 +5,9 @@ Node.js Flow Control Utility, easy to use and ready for production.
 ## Installation
 
 ```bash
-$ npm install get-flow
+$ git clone --branch=master git://github.com/enricostara/get-flow.git
+$ cd get-flow
+$ npm install
 ```
 
 ## Coding
@@ -108,5 +110,5 @@ $ npm test
 
 ## License
 
-The project released under the [Simplified BSD license](./LICENSE) 
+The project is released under the [Simplified BSD license](./LICENSE) 
   
