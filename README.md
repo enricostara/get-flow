@@ -1,6 +1,6 @@
 # get-flow
 
-Node.js Flow Control Utility, easy to use and ready for production.
+Node.js Flow Control Utility, powerful and easy to use 
 
 ## Installation
 
@@ -108,7 +108,12 @@ flow.retryUntilIsDone(
 $ npm test
 ```
 
+## Dependencies
+
+- [get-log](https://github.com/enricostara/get-log): a Node.js Logging Utility, easy to use and ready for production.
+ 
+
 ## License
 
-The project is released under the [Simplified BSD license](./LICENSE) 
+The project is released under the [MIT license](./LICENSE) 
   
