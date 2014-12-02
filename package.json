@@ -1,6 +1,6 @@
 {
     "name": "get-flow",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Flow Control Utility",
     "keywords": [
         "flow",
@@ -29,7 +29,7 @@
         "get-log": "latest"
     },
     "devDependencies": {
-        "gulp": "latest*",
+        "gulp": "latest",
         "gulp-jshint": "latest",
         "gulp-mocha": "latest",
         "mocha": "latest",

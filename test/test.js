@@ -1,5 +1,5 @@
 require('should');
-var flow = require('../index');
+var flow = require('../lib/get-flow');
 
 describe('flow', function () {
 
