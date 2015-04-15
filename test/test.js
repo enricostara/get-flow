@@ -68,24 +68,26 @@ describe('flow', function () {
     });
     describe('#runTask()', function () {
         it('should block on async task exception', function (done) {
-            flow.runSeries( [aTask, sTask, eaTask, aTask, sTask],
-            function (ex) {
-                ex.should.be.ok;
-                ex.code.should.be.equal('AEXC');
-                done();
-            })
+            flow.runSeries([aTask, sTask, eaTask, aTask, sTask],
+                function (ex) {
+                    ex.should.be.ok;
+                    ex.code.should.be.equal('AEXC');
+                    done();
+                })
         })
     });
 
     describe('#retryUntilIsDone()', function () {
         it('should retry until limit is reached ', function (done) {
             var i = 0;
+
             function task(callback, input) {
                 setTimeout(function () {
                     i++;
                     callback('err+' + input)
                 }, 10);
             }
+
             flow.retryUntilIsDone(function (ex) {
                 ex.should.be.eql('err+foo');
                 i.should.be.equal(5);

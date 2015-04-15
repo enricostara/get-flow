@@ -1,45 +1,45 @@
 {
-    "name": "get-flow",
-    "version": "0.2.1",
-    "description": "Flow Control Utility",
-    "keywords": [
-        "flow",
-        "control",
-        "task",
-        "sequence",
-        "serial",
-        "series",
-        "sync",
-        "async",
-        "retry",
-        "utility",
-        "util"
-    ],
-    "author": "Enrico Stara <enrico.stara@gmail.com>",
-    "homepage": "https://github.com/enricostara/get-flow",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/enricostara/get-flow.git"
-    },
-    "bugs": {
-        "url": "https://github.com/enricostara/get-flow/issues"
-    },
-    "license": "MIT",
-    "dependencies": {
-        "get-log": "latest"
-    },
-    "devDependencies": {
-        "gulp": "latest",
-        "gulp-jshint": "latest",
-        "gulp-mocha": "latest",
-        "mocha": "latest",
-        "should": "latest"
-    },
-    "main": "./lib/get-flow",
-    "engines": {
-        "node": ">0.10.30"
-    },
-    "scripts": {
-        "test": "gulp test"
-    }
+  "name": "get-flow",
+  "version": "0.3.0",
+  "description": "Flow Control Utility",
+  "keywords": [
+    "flow",
+    "control",
+    "task",
+    "sequence",
+    "serial",
+    "series",
+    "sync",
+    "async",
+    "retry",
+    "utility",
+    "util"
+  ],
+  "author": "Enrico Stara <enrico.stara@gmail.com>",
+  "homepage": "https://github.com/enricostara/get-flow",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/enricostara/get-flow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enricostara/get-flow/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "get-log": "latest"
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-jshint": "latest",
+    "gulp-mocha": "latest",
+    "mocha": "latest",
+    "should": "latest"
+  },
+  "main": "./lib/get-flow",
+  "engines": {
+    "node": ">0.10.30"
+  },
+  "scripts": {
+    "test": "gulp test"
+  }
 }
